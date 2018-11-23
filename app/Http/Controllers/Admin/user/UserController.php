@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\Admin\User;
 
 class UserController extends Controller
 {
@@ -36,7 +37,59 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          //表单验证
+       $this->validate($request, [
+            'username' => 'required|regex:/^\w{6,16}$/',
+            'password' => 'required|regex:/^\S{6,12}$/',
+            'phone'=>'regex:/^1[3456789]\d{9}$/',
+            'photo'=>'required'
+        ],[
+            'username.required' => '用户名不能为空',
+            'username.regex'=>'用户名格式不正确',
+            'password.required'  => '密码不能为空',
+            'password.regex'  => '密码格式不正确',
+            'phone.regex'=>'手机号码格式不正确',
+            'photo.required'=>'请上传图片'
+        ]);
+
+        //表单添加页传过来的数据  剔除
+        $res = $request->except('_token','photo');
+        //上传头像
+        if($request->hasFile('photo')){
+            //自定义名字
+            $name = rand(111,999).time();
+
+            //获取后缀
+            $suffix = $request->file('photo')->getClientOriginalExtension();
+
+            $request->file('photo')->move('./uploads',$name.'.'.$suffix);
+
+            $res['photo'] = '/uploads/'.$name.'.'.$suffix;
+
+        }
+
+        //加密密码
+        $res['password'] = encrypt($request->password);
+
+
+
+        //存数据
+
+        try{
+            $data = User::create($res);
+            if(!$data){
+                return redirect('/admin/user')->with('success','添加成功');
+            }
+
+         }catch(\Exception $e){
+
+             return back()->with('error','添加失败');
+         }
+
+
+
+
+
     }
 
     /**

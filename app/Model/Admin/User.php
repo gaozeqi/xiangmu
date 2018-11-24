@@ -12,7 +12,7 @@ class User extends Model
      * @var string
      */
     protected $table = 'users';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'uid';
     /**
      * 该模型是否被自动维护时间戳
      *

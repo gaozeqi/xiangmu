@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin\user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Model\Admin\User;
+
 
 class UserController extends Controller
 {
@@ -13,9 +15,18 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+      $res = User::all();
+
+
+         return view('admin.user.index',
+            [
+                'title'=>'用户浏览',
+                'res'=>$res,
+                'request'=>$request
+            ]);
     }
 
     /**
@@ -42,13 +53,15 @@ class UserController extends Controller
             'username' => 'required|regex:/^\w{6,16}$/',
             'password' => 'required|regex:/^\S{6,12}$/',
             'phone'=>'regex:/^1[3456789]\d{9}$/',
-            'photo'=>'required'
+            'photo'=>'required',
+            'email'=>'email'
         ],[
             'username.required' => '用户名不能为空',
             'username.regex'=>'用户名格式不正确',
             'password.required'  => '密码不能为空',
             'password.regex'  => '密码格式不正确',
             'phone.regex'=>'手机号码格式不正确',
+            'email.email'=>'邮箱格式不正确',
             'photo.required'=>'请上传图片'
         ]);
 
@@ -85,11 +98,6 @@ class UserController extends Controller
 
              return back()->with('error','添加失败');
          }
-
-
-
-
-
     }
 
     /**

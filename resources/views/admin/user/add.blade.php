@@ -29,15 +29,13 @@
                     <input id="validation_password" name="password" placeholder="Password" type="password">
                 </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="validation_agree">权限</label>
+             <div class="control-group">
+                <label class="control-label" for="validation_name">邮箱</label>
                 <div class="controls">
-                    <label class="checkbox">
-                        <input  id="validation_agree" name="auth" type="radio" value="0">后台管理员
-                        <input  id="validation_agree" name="auth" type="radio" value="1">普通用户
-                    </label>
+                    <input id="validation_name" name="email" placeholder="Email" type="text">
                 </div>
             </div>
+
             <div class="control-group">
                 <label class="control-label" for="validation_name">电话</label>
                 <div class="controls">
@@ -62,7 +60,16 @@
                 <label class="control-label" for="validation_name">头像</label>
                  <div>
                 <a class="file-input-wrapper btn"> <input title="点击此处选择图片" type="file" style="left: -131.949px; top: -4.27687px;" name="photo"></a>
-            </div
+            </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="validation_agree">权限</label>
+                <div class="controls">
+                    <label class="checkbox">
+                        <input  id="validation_agree" name="status" type="radio" value="0">后台管理员
+                        <input  id="validation_agree" name="status" type="radio" value="1">普通用户
+                    </label>
+                </div>
             </div>
 
             <div class="form-actions" style="margin-bottom:0">

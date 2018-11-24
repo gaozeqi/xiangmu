@@ -116,7 +116,7 @@
             </a>
         </li>
          <li class=''>
-            <a href='invoice.html'>
+            <a href='/admin/user'>
                 <i class='icon-money'></i>
                 <span>管理管理员</span>
             </a>

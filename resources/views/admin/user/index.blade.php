@@ -85,7 +85,16 @@ style="margin-bottom:0;" id="DataTables_Table_0" aria-describedby="DataTables_Ta
                 {{$v->phone}}
             </td>
             <td class="">
-                {{$v->sex}}
+                @if($v->status== 1)
+
+                    男
+                @elseif($v->status== 2)
+                    女
+
+                @else
+                    保密
+
+                @endif
             </td>
             <td class="">
                 {{$v->address}}
@@ -101,17 +110,17 @@ style="margin-bottom:0;" id="DataTables_Table_0" aria-describedby="DataTables_Ta
                 <span class="label label-warning">
                 @if($v->status== 0)
 
-                                管理员
-                            @else
-                                普通用户
+                    管理员
+                @else
+                    普通用户
 
-                            @endif
+                @endif
                 </span>
             </td>
             <td class=" ">
-                            <a href="/admin/user/edit" class='btn btn-info'>修改</a>
+                            <a href="/admin/user/{{$v->uid}}/edit" class='btn btn-info'>修改</a>
 
-                            <form action="/admin/user/" method='post' style='display:inline'>
+                            <form action="/admin/user/{{$v->uid}}" method='post' style='display:inline'>
                                 {{csrf_field()}}
 
                                 {{method_field("DELETE")}}

@@ -20,5 +20,5 @@ Route::group([], function(){
 	Route::get('/admin', 'Admin\IndexController@index');
 
 	//后台的用户管理
-	Route::resource('admin/user',"Admin\user\UserController");
+	Route::resource('admin/user',"Admin\UserController");
 });

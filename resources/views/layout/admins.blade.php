@@ -131,19 +131,19 @@
 <section id='content'>
 <div class='container-fluid'>
 <div class='row-fluid' id='content-wrapper'>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-star"></i>
+                <span>Buttons &amp; Icons</span>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 
-<div class="page-header">
-                            <h1 class="pull-left">
-
-                                <span></span>
-                            </h1>
-                            <div class="pull-right">
-                                <ul class="breadcrumb">
-
-
-                                </ul>
-                            </div>
-                        </div>
 
 @section('content')
 

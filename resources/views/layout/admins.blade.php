@@ -137,6 +137,7 @@
                             </li>
                         </ul>
 
+
                     </div>
                 </div>
             </div>
@@ -296,6 +297,62 @@
                             </div>
                         </div>
                         @section('content')
+
+                    </li>
+                </ul>
+
+        </div>
+    </div>
+</header>
+<div id='wrapper'>
+<div id='main-nav-bg'></div>
+<nav class='' id='main-nav'>
+<div class='navigation'>
+
+<ul class='nav nav-stacked'>
+<li>
+    <a class='dropdown-collapse ' href='#'>
+        <i class='icon-home'></i>
+        <span>管理员管理</span>
+        <i class='icon-angle-down angle-down'></i>
+    </a>
+    <ul class='nav nav-stacked'>
+        <li class=''>
+            <a href='/admin/user/create'>
+                <i class='icon-money'></i>
+                <span>添加管理员</span>
+            </a>
+        </li>
+         <li class=''>
+            <a href='/admin/user'>
+                <i class='icon-money'></i>
+                <span>管理管理员</span>
+            </a>
+        </li>
+
+    </ul>
+</li>
+
+</ul>
+</div>
+</nav>
+<section id='content'>
+<div class='container-fluid'>
+<div class='row-fluid' id='content-wrapper'>
+<div class="row-fluid">
+    <div class="span12">
+        <div class="page-header">
+            <h1 class="pull-left">
+                <i class="icon-star"></i>
+                <span>Buttons &amp; Icons</span>
+            </h1>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+>>>>>>> 5584e3063890fb701f5ef6806f2a2c70f6a50ea8
 
                         @show
                     </div>

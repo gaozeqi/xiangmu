@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 
 
+
 Route::group([], function(){
 
     //后台首页
@@ -27,3 +28,4 @@ Route::group([], function(){
     Route::resource('admin/onetype','Admin\onetype\OneController');
 
 });
+

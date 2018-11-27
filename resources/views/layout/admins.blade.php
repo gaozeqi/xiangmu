@@ -136,6 +136,7 @@
                                 </ul>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -170,19 +171,28 @@
                                 <i class='icon-angle-down angle-down'>
                                 </i>
                             </a>
-                            <ul class='nav nav-stacked'>
-                                <li>
-                                    <a class='dropdown-collapse' href='#'>
-                                        <i class='icon-caret-right'>
-                                        </i>
-                                        <span>
-                                            添加用户
-                                        </span>
-                                        <i class='icon-angle-down angle-down'>
-                                        </i>
-                                    </a>
-                                </li>
-                            </ul>
+                            <li>
+                                <a class='dropdown-collapse ' href='#'>
+                                    <i class='icon-home'></i>
+                                    <span>用户管理</span>
+                                    <i class='icon-angle-down angle-down'></i>
+                                </a>
+                                <ul class='nav nav-stacked'>
+                                    <li class=''>
+                                        <a href='/admin/user/create'>
+                                            <i class='icon-money'></i>
+                                            <span>添加用户</span>
+                                        </a>
+                                    </li>
+                                     <li class=''>
+                                        <a href='/admin/user'>
+                                            <i class='icon-money'></i>
+                                            <span>管理用户</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
                         </li>
                         <li>
                             <a class='dropdown-collapse ' href='#'>
@@ -297,9 +307,11 @@
                         @section('content')
 
                         @show
+
                     </div>
                 </div>
-            </section>
+            </header>
+
 
 
 

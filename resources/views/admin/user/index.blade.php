@@ -133,4 +133,10 @@ style="margin-bottom:0;" id="DataTables_Table_0" aria-describedby="DataTables_Ta
     </tbody>
 </table>
 @stop
-
+@section('js')
+<script>
+     $('.alert-success').delay(2000).fadeOut(2000);
+    $('.alert-error').delay(2000).fadeOut(2000);
+    $('.alert-warning').delay(2000).fadeOut(2000);
+</script>
+@stop

@@ -23,9 +23,14 @@ Route::group([], function(){
     //后台首页
     Route::get('/admin', 'Admin\IndexController@index');
     //后台用户
-    Route::resource('admin/user','Admin\user\UserController');
+    Route::resource('admin/user','Admin\UserController');
+    Route::resource('admin/friend','Admin\FriendController');
 
     Route::resource('admin/onetype','Admin\onetype\OneController');
 
 });
+//前台首页
+Route::get('/home', 'home\HomeController@index');
+//购物车
+Route::get('/home/car','home\CarController@car');
 

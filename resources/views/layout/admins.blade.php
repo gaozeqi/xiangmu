@@ -3,7 +3,7 @@
 
     <head>
         <title>
-            Flatty - Flat administration template
+            @yield('title')
         </title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
         name='viewport' />
@@ -162,16 +162,6 @@
                         </form>
                     </div>
                     <ul class='nav nav-stacked'>
-                        <li>
-                            <a class='dropdown-collapse' href='#'>
-                                <i class='icon-folder-open-alt'>
-                                </i>
-                                <span>
-                                    用户管理
-                                </span>
-                                <i class='icon-angle-down angle-down'>
-                                </i>
-                            </a>
                             <li>
                                 <a class='dropdown-collapse ' href='#'>
                                     <i class='icon-home'></i>
@@ -288,6 +278,30 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <li>
+                                <a class='dropdown-collapse ' href='#'>
+                                    <i class='icon-smile'></i>
+                                    <span>友情链接管理</span>
+                                    <i class='icon-angle-down angle-down'></i>
+                                </a>
+                                <ul class='nav nav-stacked'>
+                                    <li class=''>
+                                        <a href='/admin/friend/create'>
+                                            <i class='icon-money'></i>
+                                            <span>添加链接</span>
+                                        </a>
+                                    </li>
+                                     <li class=''>
+                                        <a href='/admin/friend'>
+                                            <i class='icon-money'></i>
+                                            <span>管理链接</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
                     </ul>
                 </div>
             </nav>
@@ -304,11 +318,34 @@
                                     </span>
                                 </h1>
                             </div>
-                        </div>
+            @if(session('success'))
+                 <div class="alert alert-success">
+                        <a href="#" class="close" data-dismiss="alert">×
+                        </a>
+                        <h4>
+                            <i class="icon-ok-sign"></i>
+                            success
+                        </h4>
+                       {{session('success')}}
+                    </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-error">
+                        <a href="#" class="close" data-dismiss="alert">×
+                        </a>
+                        <h4>
+                            <i class="icon-remove-sign"></i>
+                            Error
+                        </h4>
+                       {{session('error')}}
+                    </div>
+            @endif
+
                         @section('content')
 
                         @show
-
+                        </div>
                     </div>
                 </div>
             </header>
@@ -510,5 +547,9 @@
             </script>
             <script src='/assets/javascripts/demo/demo.js' type='text/javascript'>
             </script>
+            @section('js')
+
+
+            @show
     </body>
 </html>

@@ -36,6 +36,12 @@
                                 </th>
                                 <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
                                 rowspan="1" colspan="1" aria-label="
+                                E-mail
+                                : activate to sort column ascending" style="width: 386px;">
+                                    二级类名
+                                </th>
+                                <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_1"
+                                rowspan="1" colspan="1" aria-label="
                                 Status
                                 : activate to sort column ascending" style="width: 162px;">
                                     状态
@@ -68,13 +74,20 @@
                         </tfoot>
                         <tbody role="alert" aria-live="polite" aria-relevant="all">
 
-                            @foreach($res as $k => $v)
+                            @foreach($path as $k => $v)
                             <tr class="even">
                                 <td class="  sorting_1">
                                     {{$v->id}}
                                 </td>
                                 <td class=" ">
-                                    {{$v->onetype}}
+                                    @foreach($res as $key => $val)
+                                        @if($val->id == $v->oid)
+                                            {{$val->onetype}}
+                                        @endif
+                                    @endforeach
+                                </td>
+                                <td class=" ">
+                                    {{$v->twotype}}
                                 </td>
                                 <td class="sta-spa">
                                     @if($v->status==0)
@@ -89,9 +102,9 @@
                                 </td>
                                 <td class=" ">
                                     <div class="text-right">
-                                        <a class="btn btn-info" href="/admin/twotype/{{$v->id}}">
-                                            添加二级分类
-                                        </a>
+                                        <button class="btn btn-info" name="button"  type="submit">
+                                            添加三级分类
+                                        </button>
                                         <button class='btn btn-warning sta-ajax'>
                                             @if($v->status==0)
                                                 上架
@@ -99,10 +112,10 @@
                                                 下架
                                             @endif
                                         </button>
-                                        <a class="btn btn-success" href="/admin/onetype/{{$v->id}}/edit">
+                                        <a class="btn btn-success" href="/admin/twotype/{{$v->id}}/edit">
                                             修改
                                         </a>
-                                        <form action="/admin/onetype/{{$v->id}}" method='post' style='display:inline'>
+                                        <form action="/admin/twotype/{{$v->id}}" method='post' style='display:inline'>
                                             {{csrf_field()}}
                                             {{method_field("DELETE")}}
                                             <button class='btn btn-danger'>
@@ -128,10 +141,10 @@
         var th = $(this);
         var ysta = $(this).text();
         var ids = $(this).parents('tr').find('td').eq(0).text().trim();
-        var spans = $(this).parents('tr').find('td').eq(2);
+        var spans = $(this).parents('tr').find('td').eq(3);
         var sta = spans.find('span').eq(0).attr('va').trim();
         console.log(ysta,ids,sta);
-        $.get('/admin/onestajax',{sta:sta,ids:ids},function(data){
+        $.get('/admin/twostajax',{sta:sta,ids:ids},function(data){
             console.log(data);
             if(data == 1){
                 //让输入框消失  但是输入框里面的值留下

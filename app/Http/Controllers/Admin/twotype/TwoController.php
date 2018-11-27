@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin\onetype;
+namespace App\Http\Controllers\admin\twotype;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Admin\Onetype;
 use App\Model\Admin\Twotype;
+use App\Model\Admin\Onetype;
 use DB;
-class OneController extends Controller
+class TwoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +17,12 @@ class OneController extends Controller
     public function index()
     {
         //
-        $res = Onetype::all();
-        return view('admin.onetype.onelist',[
-            'title'=>'一级类别显示页面',
-            'res'=>$res
+        $res = Onetype::where('status','1')->get();
+        $path = Twotype::all();
+        return view('admin.twotype.twolist',[
+            'title'=>'二级类别显示页面',
+            'res'=>$res,
+            'path'=>$path
         ]);
     }
 
@@ -32,7 +34,11 @@ class OneController extends Controller
     public function create()
     {
         //
-        return view('admin.onetype.add',['title'=>'一级类别添加页面']);
+        $res = Onetype::where('status','1')->get();
+        return view('admin.twotype.add1',[
+            'title'=>'二级类别添加页面',
+            'res'=>$res
+        ]);
     }
 
     /**
@@ -46,16 +52,15 @@ class OneController extends Controller
         //
         $res = $request->except('_token');
         try{
-            $data = Onetype::create($res);
+            $data = Twotype::create($res);
             if($data){
-                return redirect('/admin/onetype')->with('success','添加成功');
+                return redirect('/admin/twotype')->with('success','添加成功');
             }
 
         }catch(\Exception $e){
 
             return back()->with('error','添加失败');
         }
-
     }
 
     /**
@@ -66,7 +71,14 @@ class OneController extends Controller
      */
     public function show($id)
     {
-
+        //
+        $res = Onetype::where('status','1')->get();
+        $path = Onetype::find($id);
+        return view('admin.twotype.add',[
+            'title'=>'二级类别添加页面',
+            'res'=>$res,
+            'path'=>$path
+        ]);
     }
 
     /**
@@ -78,10 +90,12 @@ class OneController extends Controller
     public function edit($id)
     {
         //
-        $res = Onetype::where('id',$id)->first();
-        return view('admin.onetype.edit',[
-            'title'=>'一级类别的修改页面',
-            'res'=>$res
+        $res = Onetype::where('status','1')->get();
+        $path = Twotype::find($id);
+        return view('admin.twotype.edit',[
+            'title'=>'分类修改页面',
+            'res'=>$res,
+            'path'=>$path
         ]);
     }
 
@@ -96,19 +110,21 @@ class OneController extends Controller
     {
         //
         $res = $request->except('_token','profile','_method');
+        // dd($res,$id);
+        // exit;
         //数据表修改数据
         try{
 
-            $data = Onetype::where('id', $id)->update($res);
-
+            $data = twotype::where('id', $id)->update($res);
             if($data){
-                return redirect('/admin/onetype')->with('success','修改成功');
+                return redirect('/admin/twotype')->with('success','修改成功');
             }
 
         }catch(\Exception $e){
 
             return back()->with('error','修改失败');
         }
+
     }
 
     /**
@@ -121,10 +137,10 @@ class OneController extends Controller
     {
         //
         try{
-            $data = Onetype::destroy($id);
-            $da = Twotype::where('oid','=',$id)->delete();
+            $data = Twotype::destroy($id);
+            //$da = Thrtype::where('tid','=',$id)->delete();
             if($data){
-                return redirect('/admin/onetype')->with('success','删除成功');
+                return redirect('/admin/twotype')->with('success','删除成功');
             }
 
         }catch(\Exception $e){
@@ -149,7 +165,7 @@ class OneController extends Controller
         }else{
             $res['status'] = '1';
         }
-        $data = Onetype::where('id',$id)->update($res);
+        $data = Twotype::where('id',$id)->update($res);
         if($data){
             if($res['status'] == '0'){
                 echo 0;
